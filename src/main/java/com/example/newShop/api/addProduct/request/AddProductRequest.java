@@ -5,6 +5,7 @@ import org.springframework.lang.NonNull;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 
 public class AddProductRequest {
 
@@ -19,6 +20,11 @@ public class AddProductRequest {
 
     @NonNull
     private TypeRequest type;
+
+    private String promotionName;
+    private BigDecimal promotionPrice;
+    private SimpleDateFormat startDate;
+    private SimpleDateFormat endDate;
 
     public String getName() {
         return name;
@@ -47,12 +53,49 @@ public class AddProductRequest {
         return this;
     }
 
+    @NonNull
     public TypeRequest getType() {
         return type;
     }
 
-    public AddProductRequest setType(TypeRequest type) {
+    public AddProductRequest setType(@NonNull TypeRequest type) {
         this.type = type;
+        return this;
+    }
+
+    public String getPromotionName() {
+        return promotionName;
+    }
+
+    public AddProductRequest setPromotionName(String promotionName) {
+        this.promotionName = promotionName;
+        return this;
+    }
+
+    public BigDecimal getPromotionPrice() {
+        return promotionPrice;
+    }
+
+    public AddProductRequest setPromotionPrice(BigDecimal promotionPrice) {
+        this.promotionPrice = promotionPrice;
+        return this;
+    }
+
+    public SimpleDateFormat getStartDate() {
+        return startDate;
+    }
+
+    public AddProductRequest setStartDate(SimpleDateFormat startDate) {
+        this.startDate = startDate;
+        return this;
+    }
+
+    public SimpleDateFormat getEndDate() {
+        return endDate;
+    }
+
+    public AddProductRequest setEndDate(SimpleDateFormat endDate) {
+        this.endDate = endDate;
         return this;
     }
 }

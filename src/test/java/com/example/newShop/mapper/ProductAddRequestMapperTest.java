@@ -7,6 +7,7 @@ import com.example.newShop.dao.entity.Type;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -22,7 +23,12 @@ class ProductAddRequestMapperTest {
                 .setGlobalCodeItemNumber("PPPP")
                 .setName("Daniel")
                 .setPrice(new BigDecimal("555.55"))
-                .setType(TypeRequest.FOOD);
+                .setType(TypeRequest.FOOD)
+                .setPromotionName("Promotion")
+                .setPromotionPrice(new BigDecimal("500"))
+                .setStartDate(new SimpleDateFormat("2021-10-12 01:00"))
+                .setStartDate(new SimpleDateFormat("2021-12-24 01:00"));
+
         //when
         Product result = productAddRequestMapper.mapToProduct(addProductRequest);
         //then
@@ -31,6 +37,7 @@ class ProductAddRequestMapperTest {
         assertEquals(new BigDecimal("555.55"), result.getPrice());
         assertEquals(Type.FOOD, result.getType());
     }
+
     @Test
     void shouldReturnNullWhenGlobalCodeItemNumberIsNull() {
         //given
@@ -38,7 +45,11 @@ class ProductAddRequestMapperTest {
                 .setGlobalCodeItemNumber(null)
                 .setName("Daniel")
                 .setPrice(new BigDecimal("555.55"))
-                .setType(TypeRequest.FOOD);
+                .setType(TypeRequest.FOOD)
+                .setPromotionName("Promotion")
+                .setPromotionPrice(new BigDecimal("500"))
+                .setStartDate(new SimpleDateFormat("2021-10-12 01:00"))
+                .setStartDate(new SimpleDateFormat("2021-12-24 01:00"));
         //when
         Product result = productAddRequestMapper.mapToProduct(addProductRequest);
         //then

@@ -21,7 +21,11 @@ public class ProductByNumberMapper {
                 .setGlobalCodeItemNumber(product.getGlobalCodeItemNumber())
                 .setName(product.getName())
                 .setPrice(product.getPrice())
-                .setType(toType(product.getType()));
+                .setType(toType(product.getType()))
+                .setPromotionName(product.getPromotionName())
+                .setPromotionPrice(product.getPromotionPrice())
+                .setStartDate(product.getStartDate())
+                .setEndDate(product.getEndDate());
     }
 
     private TypeResponse toType(Type source) {

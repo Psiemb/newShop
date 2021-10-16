@@ -12,9 +12,7 @@ import java.util.Objects;
 public class ProductAddRequestMapper {
 
     public Product mapToProduct(AddProductRequest request) {
-        if (Objects.isNull(request) || Objects.isNull(request.getType())
-                || Objects.isNull(request.getGlobalCodeItemNumber()) || Objects.isNull(request.getName())
-                || Objects.isNull(request.getPrice())) {
+        if (Objects.isNull(request) || Objects.isNull(request.getGlobalCodeItemNumber()) || Objects.isNull(request.getName()) || Objects.isNull(request.getPrice())) {
             return null;
         }
 
@@ -22,7 +20,12 @@ public class ProductAddRequestMapper {
                 .setGlobalCodeItemNumber(request.getGlobalCodeItemNumber())
                 .setName(request.getName())
                 .setPrice(request.getPrice())
-                .setType(mapType(request.getType()));
+                .setType(mapType(request.getType()))
+                .setPromotionName(request.getPromotionName())
+                .setPromotionPrice(request.getPromotionPrice())
+                .setStartDate(request.getStartDate())
+                .setEndDate(request.getEndDate());
+
     }
 
     private Type mapType(TypeRequest source) {

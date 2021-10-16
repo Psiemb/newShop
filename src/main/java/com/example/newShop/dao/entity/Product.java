@@ -2,6 +2,7 @@ package com.example.newShop.dao.entity;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 
 @Entity
 @Table(name = "Produkty")
@@ -14,6 +15,10 @@ public class Product {
     private String globalCodeItemNumber;
     private BigDecimal price;
     private Type type;
+    private String promotionName;
+    private BigDecimal promotionPrice;
+    private SimpleDateFormat startDate;
+    private SimpleDateFormat endDate;
 
     public Long getId() {
         return id;
@@ -57,6 +62,42 @@ public class Product {
 
     public Product setType(Type type) {
         this.type = type;
+        return this;
+    }
+
+    public String getPromotionName() {
+        return promotionName;
+    }
+
+    public Product setPromotionName(String promotionName) {
+        this.promotionName = promotionName;
+        return this;
+    }
+
+    public BigDecimal getPromotionPrice() {
+        return promotionPrice;
+    }
+
+    public Product setPromotionPrice(BigDecimal promotionPrice) {
+        this.promotionPrice = promotionPrice;
+        return this;
+    }
+
+    public SimpleDateFormat getStartDate() {
+        return startDate;
+    }
+
+    public Product setStartDate(SimpleDateFormat startDate) {
+        this.startDate = startDate;
+        return this;
+    }
+
+    public SimpleDateFormat getEndDate() {
+        return endDate;
+    }
+
+    public Product setEndDate(SimpleDateFormat endDate) {
+        this.endDate = endDate;
         return this;
     }
 }

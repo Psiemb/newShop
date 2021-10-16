@@ -17,7 +17,12 @@ public class ProductByNameMapper {
                 .setGlobalCodeItemNumber(source.getGlobalCodeItemNumber())
                 .setName(source.getName())
                 .setPrice(source.getPrice())
-                .setType(mapType(source.getType()));
+                .setType(mapType(source.getType()))
+                .setPromotionName(source.getPromotionName())
+                .setPromotionPrice(source.getPromotionPrice())
+                .setStartDate(source.getStartDate())
+                .setEndDate(source.getEndDate());
+
     }
 
     private TypeResponseByName mapType(Type source) {

@@ -83,4 +83,6 @@ public class ProductController {
         ProductResponseByNumber response = productByNumberMapper.mapToProductResponseByNumber(byGlobalCodeItemNumber.get());
         return ResponseEntity.ok().body(response);
     }
+
+
 }

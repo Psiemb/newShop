@@ -25,15 +25,20 @@ public class ProductsAddRequestMapper {
     }
 
     private Product toProduct(ProductRequest source) {
-        if (Objects.isNull(source) || Objects.isNull(source.getGlobalCodeItemNumber())
-                || Objects.isNull(source.getName()) || Objects.isNull(source.getType())
-                || source.getPrice().compareTo(BigDecimal.ZERO) < 0) {
+//        if (Objects.isNull(source) || Objects.isNull(source.getGlobalCodeItemNumber())
+//                || Objects.isNull(source.getName()) || Objects.isNull(source.getType())
+//                || source.getPrice().compareTo(BigDecimal.ZERO) < 0) {
+        if (Objects.isNull(source)) {
         return null;
         }
         return new Product()
                 .setName(source.getName())
                 .setGlobalCodeItemNumber(source.getGlobalCodeItemNumber())
                 .setPrice(source.getPrice())
-                .setType(source.getType());
+                .setType(source.getType())
+                .setPromotionName(source.getPromotionName())
+                .setPromotionPrice(source.getPromotionPrice())
+                .setStartDate(source.getStartDate())
+                .setEndDate(source.getEndDate());
     }
 }
