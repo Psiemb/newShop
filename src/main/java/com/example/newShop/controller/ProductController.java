@@ -1,7 +1,6 @@
 package com.example.newShop.controller;
 
 import com.example.newShop.api.addProduct.request.AddProductRequest;
-import com.example.newShop.api.addProducts.request.AddProductsRequest;
 import com.example.newShop.api.findByName.response.ProductResponseByName;
 import com.example.newShop.api.findByNumber.response.ProductResponseByNumber;
 import com.example.newShop.dao.entity.Product;
@@ -16,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Optional;
 
 @RestController
