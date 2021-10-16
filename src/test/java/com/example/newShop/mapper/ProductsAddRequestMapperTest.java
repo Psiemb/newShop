@@ -55,6 +55,4 @@ class ProductsAddRequestMapperTest {
         //then
         assertNull(result.get(0).getGlobalCodeItemNumber());
     }
-
-
 }
