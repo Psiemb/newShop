@@ -4,6 +4,7 @@ import com.example.newShop.dao.entity.Type;
 import com.sun.istack.NotNull;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
 
 public class ProductRequest {
@@ -14,7 +15,7 @@ public class ProductRequest {
     @NotBlank
     private String globalCodeItemNumber;
 
-    @NotBlank
+    @PositiveOrZero
     private BigDecimal price;
 
     @NotNull

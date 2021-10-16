@@ -1,6 +1,7 @@
 package com.example.newShop.controller;
 
 import com.example.newShop.api.addProduct.request.AddProductRequest;
+import com.example.newShop.api.addProducts.request.AddProductsRequest;
 import com.example.newShop.api.findByName.response.ProductResponseByName;
 import com.example.newShop.api.findByNumber.response.ProductResponseByNumber;
 import com.example.newShop.dao.entity.Product;
@@ -15,6 +16,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -42,15 +45,18 @@ public class ProductController {
 //            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 //        }
         Product product = productAddRequestMapper.mapToProduct(request);
-        productManager.addProduct(product);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-//    public ResponseEntity<Void> addProducts(@RequestBody @Valid AddProductsRequest request){
-//
-//        List<Product> products = productsAddRequestMapper.mapToProducts(request);
-//    }
-
+    @GetMapping
+    public ResponseEntity<Void> addProducts(@RequestBody @Valid AddProductsRequest request) {
+        if(Objects.isNull(request) || Objects.isNull(request.getRequests())){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        List<Product> products = productsAddRequestMapper.mapToProducts(request);
+        productManager.addProducts(products);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
 
     @GetMapping("/product/{productName}")
     public ResponseEntity<ProductResponseByName> getByName(@PathVariable(name = "productName") String name) {
