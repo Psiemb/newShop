@@ -1,6 +1,7 @@
 package com.example.newShop.controller;
 
 import com.example.newShop.api.addProduct.request.AddProductRequest;
+import com.example.newShop.api.addProducts.request.AddProductsRequest;
 import com.example.newShop.api.findByName.response.ProductResponseByName;
 import com.example.newShop.api.findByNumber.response.ProductResponseByNumber;
 import com.example.newShop.dao.entity.Product;
@@ -8,12 +9,14 @@ import com.example.newShop.manager.ProductManager;
 import com.example.newShop.mapper.ProductAddRequestMapper;
 import com.example.newShop.mapper.ProductByNameMapper;
 import com.example.newShop.mapper.ProductByNumberMapper;
+import com.example.newShop.mapper.ProductsAddRequestMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -23,12 +26,14 @@ public class ProductController {
     private final ProductAddRequestMapper productAddRequestMapper;
     private final ProductByNumberMapper productByNumberMapper;
     private final ProductByNameMapper productByNameMapper;
+    private final ProductsAddRequestMapper productsAddRequestMapper;
 
-    public ProductController(ProductManager productManager, ProductAddRequestMapper productAddRequestMapper, ProductByNumberMapper productByNumberMapper, ProductByNameMapper productByNameMapper) {
+    public ProductController(ProductManager productManager, ProductAddRequestMapper productAddRequestMapper, ProductByNumberMapper productByNumberMapper, ProductByNameMapper productByNameMapper, ProductsAddRequestMapper productsAddRequestMapper) {
         this.productManager = productManager;
         this.productAddRequestMapper = productAddRequestMapper;
         this.productByNumberMapper = productByNumberMapper;
         this.productByNameMapper = productByNameMapper;
+        this.productsAddRequestMapper = productsAddRequestMapper;
     }
 
     @PostMapping("/products")
@@ -42,6 +47,12 @@ public class ProductController {
         productManager.addProduct(product);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
+//    public ResponseEntity<Void> addProducts(@RequestBody @Valid AddProductsRequest request){
+//
+//        List<Product> products = productsAddRequestMapper.mapToProducts(request);
+//    }
+
 
     @GetMapping("/product/{productName}")
     public ResponseEntity<ProductResponseByName> getByName(@PathVariable(name = "productName") String name) {
@@ -68,6 +79,4 @@ public class ProductController {
         ProductResponseByNumber response = productByNumberMapper.mapToProductResponseByNumber(byGlobalCodeItemNumber.get());
         return ResponseEntity.ok().body(response);
     }
-
-
 }
