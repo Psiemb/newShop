@@ -18,10 +18,10 @@ public class ProductByNameMapper {
                 .setName(source.getName())
                 .setPrice(source.getPrice())
                 .setType(mapType(source.getType()))
-                .setPromotionName(source.getPromotionName())
-                .setPromotionPrice(source.getPromotionPrice())
-                .setStartDate(source.getStartDate())
-                .setEndDate(source.getEndDate());
+                .setPromotionName(source.getPromotion().getName())
+                .setPromotionPrice(source.getPromotion().getPrice())
+                .setStartDate(source.getPromotion().getStartDate())
+                .setEndDate(source.getPromotion().getEndDate());
 
     }
 

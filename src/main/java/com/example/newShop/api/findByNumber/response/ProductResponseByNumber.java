@@ -12,8 +12,8 @@ public class ProductResponseByNumber {
     private TypeResponse type;
     private String promotionName;
     private BigDecimal promotionPrice;
-    private SimpleDateFormat startDate;
-    private SimpleDateFormat endDate;
+    private SimpleDateFormat promotionStartDate;
+    private SimpleDateFormat promotionEndDate;
 
     public Long getId() {
         return id;
@@ -78,21 +78,21 @@ public class ProductResponseByNumber {
         return this;
     }
 
-    public SimpleDateFormat getStartDate() {
-        return startDate;
+    public SimpleDateFormat getPromotionStartDate() {
+        return promotionStartDate;
     }
 
-    public ProductResponseByNumber setStartDate(SimpleDateFormat startDate) {
-        this.startDate = startDate;
+    public ProductResponseByNumber setPromotionStartDate(SimpleDateFormat promotionStartDate) {
+        this.promotionStartDate = promotionStartDate;
         return this;
     }
 
-    public SimpleDateFormat getEndDate() {
-        return endDate;
+    public SimpleDateFormat getPromotionEndDate() {
+        return promotionEndDate;
     }
 
-    public ProductResponseByNumber setEndDate(SimpleDateFormat endDate) {
-        this.endDate = endDate;
+    public ProductResponseByNumber setPromotionEndDate(SimpleDateFormat promotionEndDate) {
+        this.promotionEndDate = promotionEndDate;
         return this;
     }
 }

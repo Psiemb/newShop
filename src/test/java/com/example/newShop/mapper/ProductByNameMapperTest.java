@@ -3,6 +3,7 @@ package com.example.newShop.mapper;
 import com.example.newShop.api.findByName.response.ProductResponseByName;
 import com.example.newShop.api.findByName.response.TypeResponseByName;
 import com.example.newShop.dao.entity.Product;
+import com.example.newShop.dao.entity.Promotion;
 import com.example.newShop.dao.entity.Type;
 import org.junit.jupiter.api.Test;
 
@@ -19,16 +20,19 @@ class ProductByNameMapperTest {
     @Test
     void returnProductResponseByNameWhenProductIsGiven() {
         //given
+        Promotion promotion = new Promotion()
+                .setName("Promotion")
+                .setPrice(new BigDecimal("5000"))
+                .setStartDate(new SimpleDateFormat("2021-10-12 01:00"))
+                .setEndDate(new SimpleDateFormat("2021-12-24 01:00"));
         Product product = new Product()
                 .setId(1L)
                 .setGlobalCodeItemNumber("PPPP")
                 .setName("Daniel")
                 .setPrice(new BigDecimal("555.55"))
                 .setType(Type.FOOD)
-                .setPromotionName("Promotion")
-                .setPromotionPrice(new BigDecimal("500"))
-                .setStartDate(new SimpleDateFormat("2021-10-12 01:00"))
-                .setStartDate(new SimpleDateFormat("2021-12-24 01:00"));
+                .setPromotion(promotion);
+
         //when
         ProductResponseByName result = productByNameMapper.mapToProductResponseByName(product);
         //then
@@ -46,16 +50,18 @@ class ProductByNameMapperTest {
     @Test
     void returnProductResponseByNameFieldsEqualNullWhenProductIsGivenFieldsEqualNull() {
         //given
+        Promotion promotion = new Promotion()
+                .setName(null)
+                .setPrice(null)
+                .setStartDate(null)
+                .setStartDate(null);
         Product product = new Product()
                 .setId(1L)
                 .setGlobalCodeItemNumber(null)
                 .setName(null)
                 .setPrice(null)
                 .setType(null)
-                .setPromotionName(null)
-                .setPromotionPrice(null)
-                .setStartDate(null)
-                .setStartDate(null);
+                .setPromotion(promotion);
         //when
         ProductResponseByName result = productByNameMapper.mapToProductResponseByName(product);
         //then

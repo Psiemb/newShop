@@ -1,6 +1,7 @@
 package com.example.newShop.mapper;
 
 import com.example.newShop.api.addProduct.request.AddProductRequest;
+import com.example.newShop.api.addProduct.request.PromotionRequest;
 import com.example.newShop.api.addProduct.request.TypeRequest;
 import com.example.newShop.dao.entity.Product;
 import com.example.newShop.dao.entity.Type;
@@ -19,16 +20,18 @@ class ProductAddRequestMapperTest {
     @Test
     void shouldReturnProductWhenProductRequestISGiven() {
         //given
+        PromotionRequest promotion = new PromotionRequest()
+                .setName("Promotion")
+                .setPrice(new BigDecimal("500"))
+                .setStartDate(new SimpleDateFormat("2021-10-12 01:00"))
+                .setStartDate(new SimpleDateFormat("2021-12-24 01:00"));
+
         AddProductRequest addProductRequest = new AddProductRequest()
                 .setGlobalCodeItemNumber("PPPP")
                 .setName("Daniel")
                 .setPrice(new BigDecimal("555.55"))
                 .setType(TypeRequest.FOOD)
-                .setPromotionName("Promotion")
-                .setPromotionPrice(new BigDecimal("500"))
-                .setStartDate(new SimpleDateFormat("2021-10-12 01:00"))
-                .setStartDate(new SimpleDateFormat("2021-12-24 01:00"));
-
+                .setPromotionRequest(promotion);
         //when
         Product result = productAddRequestMapper.mapToProduct(addProductRequest);
         //then
@@ -41,19 +44,22 @@ class ProductAddRequestMapperTest {
     @Test
     void shouldReturnNullWhenGlobalCodeItemNumberIsNull() {
         //given
+        PromotionRequest promotion = new PromotionRequest()
+                .setName("Promotion")
+                .setPrice(new BigDecimal("500"))
+                .setStartDate(new SimpleDateFormat("2021-10-12 01:00"))
+                .setStartDate(new SimpleDateFormat("2021-12-24 01:00"));
+
         AddProductRequest addProductRequest = new AddProductRequest()
                 .setGlobalCodeItemNumber(null)
                 .setName("Daniel")
                 .setPrice(new BigDecimal("555.55"))
                 .setType(TypeRequest.FOOD)
-                .setPromotionName("Promotion")
-                .setPromotionPrice(new BigDecimal("500"))
-                .setStartDate(new SimpleDateFormat("2021-10-12 01:00"))
-                .setStartDate(new SimpleDateFormat("2021-12-24 01:00"));
+                .setPromotionRequest(promotion);
         //when
         Product result = productAddRequestMapper.mapToProduct(addProductRequest);
         //then
-        assertNull(result);
+        assertNull(result.getGlobalCodeItemNumber());
     }
 
 }

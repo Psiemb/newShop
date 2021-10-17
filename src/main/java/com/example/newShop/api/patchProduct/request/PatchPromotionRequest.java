@@ -5,7 +5,10 @@ import javax.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 
-public class PatchProductRequest {
+public class PatchPromotionRequest {
+
+    @NotBlank
+    private String productName;
 
     @NotBlank
     private String promotionName;
@@ -19,11 +22,20 @@ public class PatchProductRequest {
     @NotBlank
     private SimpleDateFormat endDate;
 
+    public String getProductName() {
+        return productName;
+    }
+
+    public PatchPromotionRequest setProductName(String productName) {
+        this.productName = productName;
+        return this;
+    }
+
     public String getPromotionName() {
         return promotionName;
     }
 
-    public PatchProductRequest setPromotionName(String promotionName) {
+    public PatchPromotionRequest setPromotionName(String promotionName) {
         this.promotionName = promotionName;
         return this;
     }
@@ -32,7 +44,7 @@ public class PatchProductRequest {
         return promotionPrice;
     }
 
-    public PatchProductRequest setPromotionPrice(BigDecimal promotionPrice) {
+    public PatchPromotionRequest setPromotionPrice(BigDecimal promotionPrice) {
         this.promotionPrice = promotionPrice;
         return this;
     }
@@ -41,7 +53,7 @@ public class PatchProductRequest {
         return startDate;
     }
 
-    public PatchProductRequest setStartDate(SimpleDateFormat startDate) {
+    public PatchPromotionRequest setStartDate(SimpleDateFormat startDate) {
         this.startDate = startDate;
         return this;
     }
@@ -50,7 +62,7 @@ public class PatchProductRequest {
         return endDate;
     }
 
-    public PatchProductRequest setEndDate(SimpleDateFormat endDate) {
+    public PatchPromotionRequest setEndDate(SimpleDateFormat endDate) {
         this.endDate = endDate;
         return this;
     }

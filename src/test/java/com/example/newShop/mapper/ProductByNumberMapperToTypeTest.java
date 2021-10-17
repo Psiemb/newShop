@@ -6,6 +6,8 @@ import com.example.newShop.dao.entity.Product;
 import com.example.newShop.dao.entity.Type;
 import org.junit.jupiter.api.Test;
 
+import java.util.Objects;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProductByNumberMapperToTypeTest {
@@ -23,6 +25,9 @@ class ProductByNumberMapperToTypeTest {
     }
 
     private Product createProduct(Type type) {
+        if(Objects.isNull(type)){
+            return null;
+        }
         return new Product()
                 .setType(type);
     }

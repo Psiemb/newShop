@@ -2,9 +2,10 @@ package com.example.newShop.controller;
 
 import com.example.newShop.api.addProduct.request.AddProductRequest;
 import com.example.newShop.api.addProducts.request.AddProductsRequest;
+import com.example.newShop.api.changePrice.request.ProductChangePrice;
 import com.example.newShop.api.findByName.response.ProductResponseByName;
 import com.example.newShop.api.findByNumber.response.ProductResponseByNumber;
-import com.example.newShop.api.patchProduct.request.PatchProductRequest;
+import com.example.newShop.api.patchProduct.request.PatchPromotionRequest;
 import com.example.newShop.dao.entity.Product;
 import com.example.newShop.manager.ProductManager;
 import com.example.newShop.mapper.*;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -51,16 +51,23 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    @PatchMapping("/promotions/price")
+    public ResponseEntity<Void> updateName(@RequestBody @Valid ProductChangePrice price) {
+        Product product = productPatchRequestMapper.mapToProductPrice(price);
+        productManager.update(product.getPrice(), product.getName());
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
     @PatchMapping("/promotions")
-    public ResponseEntity<Void> patchProduct(@PathVariable(name = "productName") String name, @RequestBody PatchProductRequest request) {
+    public ResponseEntity<Void> patchProduct(@RequestBody PatchPromotionRequest request) {
         //TODO: dokonczyc update... kiedys tam
-        Optional<Product> byName = productManager.findByName(name);
+        Optional<Product> byName = productManager.findByName(request.getProductName());
         if (byName.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         Product product = productPatchRequestMapper.mapToProduct(request);
-        Product result = productPatchRequestMapper.mapToUpdatedProduct(byName.get(), product);
-        productManager.update(result);
+//        Product result = productPatchRequestMapper.mapToUpdatedProduct(byName.get(), product);
+//        productManager.update(result);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 

@@ -22,10 +22,8 @@ public class ProductRequest {
     @NotNull
     private Type type;
 
-    private String promotionName;
-    private BigDecimal promotionPrice;
-    private SimpleDateFormat startDate;
-    private SimpleDateFormat endDate;
+    @NotNull
+    private Promotion promotion;
 
     public String getName() {
         return name;
@@ -63,39 +61,12 @@ public class ProductRequest {
         return this;
     }
 
-    public String getPromotionName() {
-        return promotionName;
+    public Promotion getPromotion() {
+        return promotion;
     }
 
-    public ProductRequest setPromotionName(String promotionName) {
-        this.promotionName = promotionName;
-        return this;
-    }
-
-    public BigDecimal getPromotionPrice() {
-        return promotionPrice;
-    }
-
-    public ProductRequest setPromotionPrice(BigDecimal promotionPrice) {
-        this.promotionPrice = promotionPrice;
-        return this;
-    }
-
-    public SimpleDateFormat getStartDate() {
-        return startDate;
-    }
-
-    public ProductRequest setStartDate(SimpleDateFormat startDate) {
-        this.startDate = startDate;
-        return this;
-    }
-
-    public SimpleDateFormat getEndDate() {
-        return endDate;
-    }
-
-    public ProductRequest setEndDate(SimpleDateFormat endDate) {
-        this.endDate = endDate;
+    public ProductRequest setPromotion(Promotion promotion) {
+        this.promotion = promotion;
         return this;
     }
 }

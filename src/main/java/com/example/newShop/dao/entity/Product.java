@@ -2,10 +2,9 @@ package com.example.newShop.dao.entity;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 
 @Entity
-@Table(name = "Produkty")
+@Table(name = "produkty")
 public class Product {
 
     @Id
@@ -15,10 +14,22 @@ public class Product {
     private String globalCodeItemNumber;
     private BigDecimal price;
     private Type type;
-    private String promotionName;
-    private BigDecimal promotionPrice;
-    private SimpleDateFormat startDate;
-    private SimpleDateFormat endDate;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "promotion_id", referencedColumnName = "id")
+    private Promotion promotion;
+
+    public Product() {
+    }
+
+    public Product(Long id, String name, String globalCodeItemNumber, BigDecimal price, Type type, Promotion promotion) {
+        this.id = id;
+        this.name = name;
+        this.globalCodeItemNumber = globalCodeItemNumber;
+        this.price = price;
+        this.type = type;
+        this.promotion = promotion;
+    }
 
     public Long getId() {
         return id;
@@ -65,39 +76,12 @@ public class Product {
         return this;
     }
 
-    public String getPromotionName() {
-        return promotionName;
+    public Promotion getPromotion() {
+        return promotion;
     }
 
-    public Product setPromotionName(String promotionName) {
-        this.promotionName = promotionName;
-        return this;
-    }
-
-    public BigDecimal getPromotionPrice() {
-        return promotionPrice;
-    }
-
-    public Product setPromotionPrice(BigDecimal promotionPrice) {
-        this.promotionPrice = promotionPrice;
-        return this;
-    }
-
-    public SimpleDateFormat getStartDate() {
-        return startDate;
-    }
-
-    public Product setStartDate(SimpleDateFormat startDate) {
-        this.startDate = startDate;
-        return this;
-    }
-
-    public SimpleDateFormat getEndDate() {
-        return endDate;
-    }
-
-    public Product setEndDate(SimpleDateFormat endDate) {
-        this.endDate = endDate;
+    public Product setPromotion(Promotion promotion) {
+        this.promotion = promotion;
         return this;
     }
 }

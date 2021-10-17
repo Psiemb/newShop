@@ -5,6 +5,7 @@ import com.example.newShop.dao.entity.Product;
 import com.example.newShop.dao.entity.Type;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -52,8 +53,8 @@ public class ProductManager {
         return productRepository.findByType(type);
     }
 
-    public Product update(Product product){
-        return productRepository.save(product);
+    public void update(BigDecimal newPrice, String nameOfPrice){
+        productRepository.updatePrice(newPrice, nameOfPrice);
     }
 
 }

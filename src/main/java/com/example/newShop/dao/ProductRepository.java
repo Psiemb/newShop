@@ -19,9 +19,12 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
 
     Optional<Product> findByGlobalCodeItemNumber(String globalCodeItemNumber);
 
+    //    @Modifying
+//    @Query("update Product p set p.price = :newPrice")
+//    default void updatePrice(BigDecimal newPrice) {
+//    }
     @Modifying
-    @Query("update Product p set p.price = :newPrice")
-    default void updatePrice(BigDecimal newPrice) {
-
+    @Query("update Product p set p.price = :newPrice where p.name = nameOfProduct")
+    default void updatePrice(BigDecimal newPrice, String nameOfProduct) {
     }
 }
