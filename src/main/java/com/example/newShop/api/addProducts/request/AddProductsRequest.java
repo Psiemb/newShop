@@ -1,19 +1,19 @@
 package com.example.newShop.api.addProducts.request;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 public class AddProductsRequest {
 
-    @NotNull
-    private List<ProductRequest> requests;
+    @NotEmpty
+    private List<ProductRequest> products;
 
-    public List<ProductRequest> getRequests() {
-        return requests;
+    public List<ProductRequest> getProducts() {
+        return products;
     }
 
-    public AddProductsRequest setRequests(List<ProductRequest> requests) {
-        this.requests = requests;
+    public AddProductsRequest setProducts(List<ProductRequest> products) {
+        this.products = products;
         return this;
     }
 }

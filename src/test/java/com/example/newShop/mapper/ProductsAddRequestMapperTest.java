@@ -23,26 +23,26 @@ class ProductsAddRequestMapperTest {
     void shouldReturnProductListWhenRequestListIsGiven() {
         //given
         List<ProductRequest> productRequests = Arrays.asList(new ProductRequest()
-                .setGlobalCodeItemNumber("WWWW")
-                .setName("AAAA")
-                .setPrice(new BigDecimal("3233.2"))
-                .setType(Type.FOOD)
-                .setPromotionName("Promotion")
-                .setPromotionPrice(new BigDecimal("500"))
-                .setStartDate(new SimpleDateFormat("2021-10-12 01:00"))
-                .setStartDate(new SimpleDateFormat("2021-12-24 01:00")),
-        new ProductRequest()
-                .setGlobalCodeItemNumber("QQQQ")
-                .setName("BBBB")
-                .setPrice(new BigDecimal("1111.1"))
-                .setType(Type.FOOD)
-                .setPromotionName("PPromotion")
-                .setPromotionPrice(new BigDecimal("450"))
-                .setStartDate(new SimpleDateFormat("2021-11-12 01:00"))
-                .setStartDate(new SimpleDateFormat("2021-12-20 01:00")));
+                        .setGlobalCodeItemNumber("WWWW")
+                        .setName("AAAA")
+                        .setPrice(new BigDecimal("3233.2"))
+                        .setType(Type.FOOD)
+                        .setPromotionName("Promotion")
+                        .setPromotionPrice(new BigDecimal("500"))
+                        .setStartDate(new SimpleDateFormat("2021-10-12 01:00"))
+                        .setStartDate(new SimpleDateFormat("2021-12-24 01:00")),
+                new ProductRequest()
+                        .setGlobalCodeItemNumber("QQQQ")
+                        .setName("BBBB")
+                        .setPrice(new BigDecimal("1111.1"))
+                        .setType(Type.FOOD)
+                        .setPromotionName("PPromotion")
+                        .setPromotionPrice(new BigDecimal("450"))
+                        .setStartDate(new SimpleDateFormat("2021-11-12 01:00"))
+                        .setStartDate(new SimpleDateFormat("2021-12-20 01:00")));
 
         AddProductsRequest addProductsRequest = new AddProductsRequest()
-                .setRequests(productRequests);
+                .setProducts(productRequests);
         //when
         List<Product> result = productsAddRequestMapper.mapToProducts(addProductsRequest);
         //then
@@ -80,7 +80,7 @@ class ProductsAddRequestMapperTest {
                 .setStartDate(new SimpleDateFormat("2021-12-24 01:00")));
 
         AddProductsRequest addProductsRequest = new AddProductsRequest()
-                .setRequests(productRequests);
+                .setProducts(productRequests);
         //when
         List<Product> result = productsAddRequestMapper.mapToProducts(addProductsRequest);
         //then

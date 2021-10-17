@@ -3,6 +3,7 @@ package com.example.newShop.api.addProduct.request;
 import org.springframework.lang.NonNull;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
@@ -15,6 +16,7 @@ public class AddProductRequest {
     @NotBlank
     private String globalCodeItemNumber;
 
+    @NotNull
     @PositiveOrZero
     private BigDecimal price;
 

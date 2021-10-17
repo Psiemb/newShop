@@ -18,8 +18,9 @@ public class ProductManager {
         this.productRepository = productRepository;
     }
 
-    public Product addProduct(Product product) {
-        return productRepository.save(product);
+
+    public void addProduct(Product product) {
+        productRepository.save(product);
     }
 //    public Iterable<Product> addProducts(List<Product> products){
 //        return productRepository.saveAll(products);
@@ -49,6 +50,10 @@ public class ProductManager {
 
     public Optional<Product> findByType(Type type) {
         return productRepository.findByType(type);
+    }
+
+    public Product update(Product product){
+        return productRepository.save(product);
     }
 
 }
