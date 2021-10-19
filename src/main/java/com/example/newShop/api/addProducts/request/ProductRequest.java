@@ -1,12 +1,13 @@
-package com.example.newShop.api.addProduct.request;
+package com.example.newShop.api.addProducts.request;
 
-import org.springframework.lang.NonNull;
+import com.example.newShop.dao.entity.Type;
+import com.sun.istack.NotNull;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
 
-public class AddProductRequest {
+public class ProductRequest {
 
     @NotBlank
     private String name;
@@ -17,14 +18,17 @@ public class AddProductRequest {
     @PositiveOrZero
     private BigDecimal price;
 
-    @NonNull
-    private TypeRequest type;
+    @NotNull
+    private Type type;
+
+    @NotNull
+    private Promotion promotion;
 
     public String getName() {
         return name;
     }
 
-    public AddProductRequest setName(String name) {
+    public ProductRequest setName(String name) {
         this.name = name;
         return this;
     }
@@ -33,7 +37,7 @@ public class AddProductRequest {
         return globalCodeItemNumber;
     }
 
-    public AddProductRequest setGlobalCodeItemNumber(String globalCodeItemNumber) {
+    public ProductRequest setGlobalCodeItemNumber(String globalCodeItemNumber) {
         this.globalCodeItemNumber = globalCodeItemNumber;
         return this;
     }
@@ -42,17 +46,26 @@ public class AddProductRequest {
         return price;
     }
 
-    public AddProductRequest setPrice(BigDecimal price) {
+    public ProductRequest setPrice(BigDecimal price) {
         this.price = price;
         return this;
     }
 
-    public TypeRequest getType() {
+    public Type getType() {
         return type;
     }
 
-    public AddProductRequest setType(TypeRequest type) {
+    public ProductRequest setType(Type type) {
         this.type = type;
+        return this;
+    }
+
+    public Promotion getPromotion() {
+        return promotion;
+    }
+
+    public ProductRequest setPromotion(Promotion promotion) {
+        this.promotion = promotion;
         return this;
     }
 }

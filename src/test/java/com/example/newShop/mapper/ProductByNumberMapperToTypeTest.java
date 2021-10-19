@@ -6,6 +6,8 @@ import com.example.newShop.dao.entity.Product;
 import com.example.newShop.dao.entity.Type;
 import org.junit.jupiter.api.Test;
 
+import java.util.Objects;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProductByNumberMapperToTypeTest {
@@ -15,18 +17,27 @@ class ProductByNumberMapperToTypeTest {
     @Test
     void shouldReturnTypeResponseFoodWhenTypeFoodIsGiven(){
         //given
-        Product product = new Product()
-                .setType(Type.FOOD);
+        Product product = createProduct(Type.FOOD);
         //when
         ProductResponseByNumber result = productByNumberMapper.mapToProductResponseByNumber(product);
         //then
         assertEquals(TypeResponse.FOOD, result.getType());
     }
+
+    private Product createProduct(Type type) {
+        if(Objects.isNull(type)){
+            return null;
+        }
+        return new Product()
+                .setType(type);
+    }
+
     @Test
     void shouldReturnTypeResponseIndustrialWhenTypeIndustrialIsGiven(){
         //given
-        Product product = new Product()
-                .setType(Type.INDUSTRIAL);
+        Product product = createProduct(Type.INDUSTRIAL);
+//        Product product = new Product()
+//                .setType(Type.INDUSTRIAL);
         //when
         ProductResponseByNumber result = productByNumberMapper.mapToProductResponseByNumber(product);
         //then

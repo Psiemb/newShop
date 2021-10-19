@@ -1,6 +1,7 @@
 package com.example.newShop.api.findByNumber.response;
 
 import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 
 public class ProductResponseByNumber {
 
@@ -9,6 +10,10 @@ public class ProductResponseByNumber {
     private String globalCodeItemNumber;
     private BigDecimal price;
     private TypeResponse type;
+    private String promotionName;
+    private BigDecimal promotionPrice;
+    private OffsetDateTime promotionStartDate;
+    private OffsetDateTime promotionEndDate;
 
     public Long getId() {
         return id;
@@ -52,6 +57,42 @@ public class ProductResponseByNumber {
 
     public ProductResponseByNumber setType(TypeResponse type) {
         this.type = type;
+        return this;
+    }
+
+    public String getPromotionName() {
+        return promotionName;
+    }
+
+    public ProductResponseByNumber setPromotionName(String promotionName) {
+        this.promotionName = promotionName;
+        return this;
+    }
+
+    public BigDecimal getPromotionPrice() {
+        return promotionPrice;
+    }
+
+    public ProductResponseByNumber setPromotionPrice(BigDecimal promotionPrice) {
+        this.promotionPrice = promotionPrice;
+        return this;
+    }
+
+    public OffsetDateTime getPromotionStartDate() {
+        return promotionStartDate;
+    }
+
+    public ProductResponseByNumber setPromotionStartDate(OffsetDateTime promotionStartDate) {
+        this.promotionStartDate = promotionStartDate;
+        return this;
+    }
+
+    public OffsetDateTime getPromotionEndDate() {
+        return promotionEndDate;
+    }
+
+    public ProductResponseByNumber setPromotionEndDate(OffsetDateTime promotionEndDate) {
+        this.promotionEndDate = promotionEndDate;
         return this;
     }
 }

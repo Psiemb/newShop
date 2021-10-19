@@ -3,6 +3,7 @@ package com.example.newShop.api.addProduct.request;
 import org.springframework.lang.NonNull;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
 
@@ -14,11 +15,14 @@ public class AddProductRequest {
     @NotBlank
     private String globalCodeItemNumber;
 
+    @NotNull
     @PositiveOrZero
     private BigDecimal price;
 
     @NonNull
     private TypeRequest type;
+
+    private PromotionRequest promotionRequest;
 
     public String getName() {
         return name;
@@ -47,12 +51,22 @@ public class AddProductRequest {
         return this;
     }
 
+    @NonNull
     public TypeRequest getType() {
         return type;
     }
 
-    public AddProductRequest setType(TypeRequest type) {
+    public AddProductRequest setType(@NonNull TypeRequest type) {
         this.type = type;
+        return this;
+    }
+
+    public PromotionRequest getPromotionRequest() {
+        return promotionRequest;
+    }
+
+    public AddProductRequest setPromotionRequest(PromotionRequest promotionRequest) {
+        this.promotionRequest = promotionRequest;
         return this;
     }
 }
