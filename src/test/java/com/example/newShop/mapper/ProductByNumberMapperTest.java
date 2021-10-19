@@ -21,9 +21,9 @@ class ProductByNumberMapperTest {
         //given
         Promotion promotion = new Promotion()
                 .setName("Promotion")
-                .setPrice(new BigDecimal("5000"))
-                .setStartDate(new SimpleDateFormat("2021-10-12 01:00"))
-                .setEndDate(new SimpleDateFormat("2021-12-24 01:00"));
+                .setPrice(new BigDecimal("5000"));
+//                .setStartDate(new SimpleDateFormat("2021-10-12 01:00"))
+//                .setEndDate(new SimpleDateFormat("2021-12-24 01:00"));
         Product product = new Product()
                 .setId(2L)
                 .setGlobalCodeItemNumber("PPP")

@@ -23,9 +23,6 @@ public class ProductManager {
     public void addProduct(Product product) {
         productRepository.save(product);
     }
-//    public Iterable<Product> addProducts(List<Product> products){
-//        return productRepository.saveAll(products);
-//    }
 
     public void addProducts(List<Product> products) {
         products.forEach(productRepository::save);
@@ -37,12 +34,12 @@ public class ProductManager {
                 .collect(Collectors.toList());
     }
 
-    public Optional<Product> findByNumber(Long index) {
-        return productRepository.findById(index);
-    }
-
     public Optional<Product> findByName(String name) {
         return productRepository.findByName(name);
+    }
+
+    public Iterable<Product> findAllByName(String name) {
+        return productRepository.findAllByName(name);
     }
 
     public Optional<Product> findByGlobalCodeItemNumber(String globalCodeItemNumber) {
@@ -53,8 +50,8 @@ public class ProductManager {
         return productRepository.findByType(type);
     }
 
-    public void update(BigDecimal newPrice, String nameOfPrice){
-        productRepository.updatePrice(newPrice, nameOfPrice);
+    public void update(String name, BigDecimal price) {
+        productRepository.updatePrice(name, price);
     }
 
 }

@@ -6,7 +6,6 @@ import com.sun.istack.NotNull;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 
 public class ProductRequest {
 

@@ -17,9 +17,9 @@ class ProductPatchRequestMapperTest {
         //given
         PatchPromotionRequest promotion = new PatchPromotionRequest()
                 .setPromotionName("Promotion")
-                .setPromotionPrice(new BigDecimal("500"))
-                .setStartDate(new SimpleDateFormat("2021-10-12 01:00"))
-                .setEndDate(new SimpleDateFormat("2021-12-24 01:00"));
+                .setPromotionPrice(new BigDecimal("500"));
+//                .setStartDate(new SimpleDateFormat("2021-10-12 01:00"))
+//                .setEndDate(new SimpleDateFormat("2021-12-24 01:00"));
         //when
         Product result = productPatchRequestMapper.mapToProduct(promotion);
         //then
@@ -35,7 +35,8 @@ class ProductPatchRequestMapperTest {
         PatchPromotionRequest promotion = new PatchPromotionRequest()
                 .setPromotionName(null)
                 .setPromotionPrice(new BigDecimal("500"))
-                .setEndDate(new SimpleDateFormat("2021-12-24 01:00"));
+//                .setEndDate(new SimpleDateFormat("2021-12-24 01:00"));
+        ;
         //when
         Product product = productPatchRequestMapper.mapToProduct(promotion);
         //then

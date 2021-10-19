@@ -1,9 +1,10 @@
 package com.example.newShop.api.patchProduct.request;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
+import java.time.OffsetDateTime;
 
 public class PatchPromotionRequest {
 
@@ -16,11 +17,11 @@ public class PatchPromotionRequest {
     @PositiveOrZero
     private BigDecimal promotionPrice;
 
-    @NotBlank
-    private SimpleDateFormat startDate;
+    @NotNull
+    private OffsetDateTime startDate;
 
-    @NotBlank
-    private SimpleDateFormat endDate;
+    @NotNull
+    private OffsetDateTime endDate;
 
     public String getProductName() {
         return productName;
@@ -49,20 +50,20 @@ public class PatchPromotionRequest {
         return this;
     }
 
-    public SimpleDateFormat getStartDate() {
+    public OffsetDateTime getStartDate() {
         return startDate;
     }
 
-    public PatchPromotionRequest setStartDate(SimpleDateFormat startDate) {
+    public PatchPromotionRequest setStartDate(OffsetDateTime startDate) {
         this.startDate = startDate;
         return this;
     }
 
-    public SimpleDateFormat getEndDate() {
+    public OffsetDateTime getEndDate() {
         return endDate;
     }
 
-    public PatchPromotionRequest setEndDate(SimpleDateFormat endDate) {
+    public PatchPromotionRequest setEndDate(OffsetDateTime endDate) {
         this.endDate = endDate;
         return this;
     }

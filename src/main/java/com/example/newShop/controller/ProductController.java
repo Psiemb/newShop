@@ -3,7 +3,7 @@ package com.example.newShop.controller;
 import com.example.newShop.api.addProduct.request.AddProductRequest;
 import com.example.newShop.api.addProducts.request.AddProductsRequest;
 import com.example.newShop.api.changePrice.request.ProductChangePrice;
-import com.example.newShop.api.findByName.response.ProductResponseByName;
+import com.example.newShop.api.findByName.response.ProductsResponseByName;
 import com.example.newShop.api.findByNumber.response.ProductResponseByNumber;
 import com.example.newShop.api.patchProduct.request.PatchPromotionRequest;
 import com.example.newShop.dao.entity.Product;
@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,10 +52,10 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @PatchMapping("/promotions/price")
+    @PatchMapping("/product/price")
     public ResponseEntity<Void> updateName(@RequestBody @Valid ProductChangePrice price) {
         Product product = productPatchRequestMapper.mapToProductPrice(price);
-        productManager.update(product.getPrice(), product.getName());
+        productManager.update(product.getName(), product.getPrice());
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
@@ -62,7 +63,7 @@ public class ProductController {
     public ResponseEntity<Void> patchProduct(@RequestBody PatchPromotionRequest request) {
         //TODO: dokonczyc update... kiedys tam
         Optional<Product> byName = productManager.findByName(request.getProductName());
-        if (byName.isEmpty()) {
+        if (!byName.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         Product product = productPatchRequestMapper.mapToProduct(request);
@@ -72,15 +73,19 @@ public class ProductController {
     }
 
     @GetMapping("/product/{productName}")
-    public ResponseEntity<ProductResponseByName> getByName(@PathVariable(name = "productName") String name) {
+    public ResponseEntity<ProductsResponseByName> getByName(@PathVariable(name = "productName") String name) {
         if (StringUtils.isBlank(name)) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
-        Optional<Product> byName = productManager.findByName(name);
-        if (byName.isEmpty()) {
+        Iterable<Product> allByName = productManager.findAllByName(name);
+//        Optional<Product> byName = productManager.findByName(name);
+        List<Product> products = new ArrayList<>();
+        allByName.forEach(products::add);
+        if (products.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-        ProductResponseByName response = productByNameMapper.mapToProductResponseByName(byName.get());
+        ProductsResponseByName response = productByNameMapper.mapToProductResponseByName(products);
+//      ProductResponseByName response = productByNameMapper.mapToProductResponseByName(products);
         return ResponseEntity.ok().body(response);
     }
 
@@ -90,7 +95,7 @@ public class ProductController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
         Optional<Product> byGlobalCodeItemNumber = productManager.findByGlobalCodeItemNumber(gcin);
-        if (byGlobalCodeItemNumber.isEmpty()) {
+        if (!byGlobalCodeItemNumber.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         ProductResponseByNumber response = productByNumberMapper.mapToProductResponseByNumber(byGlobalCodeItemNumber.get());

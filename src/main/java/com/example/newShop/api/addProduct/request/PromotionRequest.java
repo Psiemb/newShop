@@ -1,14 +1,14 @@
 package com.example.newShop.api.addProduct.request;
 
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
+import java.time.OffsetDateTime;
 
 public class PromotionRequest {
 
     private String name;
     private BigDecimal price;
-    private SimpleDateFormat startDate;
-    private SimpleDateFormat endDate;
+    private OffsetDateTime startDate;
+    private OffsetDateTime endDate;
 
     public String getName() {
         return name;
@@ -28,20 +28,20 @@ public class PromotionRequest {
         return this;
     }
 
-    public SimpleDateFormat getStartDate() {
+    public OffsetDateTime getStartDate() {
         return startDate;
     }
 
-    public PromotionRequest setStartDate(SimpleDateFormat startDate) {
+    public PromotionRequest setStartDate(OffsetDateTime startDate) {
         this.startDate = startDate;
         return this;
     }
 
-    public SimpleDateFormat getEndDate() {
+    public OffsetDateTime getEndDate() {
         return endDate;
     }
 
-    public PromotionRequest setEndDate(SimpleDateFormat endDate) {
+    public PromotionRequest setEndDate(OffsetDateTime endDate) {
         this.endDate = endDate;
         return this;
     }

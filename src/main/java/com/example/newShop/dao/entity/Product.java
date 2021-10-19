@@ -2,14 +2,16 @@ package com.example.newShop.dao.entity;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 @Entity
-@Table(name = "produkty")
+//@Table(name = "produkty")
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
     private String globalCodeItemNumber;
     private BigDecimal price;
@@ -83,5 +85,23 @@ public class Product {
     public Product setPromotion(Promotion promotion) {
         this.promotion = promotion;
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Product)) return false;
+        Product product = (Product) o;
+        return Objects.equals(id, product.id) &&
+                Objects.equals(name, product.name) &&
+                Objects.equals(globalCodeItemNumber, product.globalCodeItemNumber) &&
+                Objects.equals(price, product.price) &&
+                type == product.type &&
+                Objects.equals(promotion, product.promotion);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, globalCodeItemNumber, price, type, promotion);
     }
 }

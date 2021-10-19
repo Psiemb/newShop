@@ -22,7 +22,7 @@ public class AddProductRequest {
     @NonNull
     private TypeRequest type;
 
-   private PromotionRequest promotionRequest;
+    private PromotionRequest promotionRequest;
 
     public String getName() {
         return name;

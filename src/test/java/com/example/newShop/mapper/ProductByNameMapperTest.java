@@ -1,14 +1,18 @@
 package com.example.newShop.mapper;
 
 import com.example.newShop.api.findByName.response.ProductResponseByName;
+import com.example.newShop.api.findByName.response.ProductsResponseByName;
 import com.example.newShop.api.findByName.response.TypeResponseByName;
 import com.example.newShop.dao.entity.Product;
 import com.example.newShop.dao.entity.Promotion;
 import com.example.newShop.dao.entity.Type;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -22,9 +26,7 @@ class ProductByNameMapperTest {
         //given
         Promotion promotion = new Promotion()
                 .setName("Promotion")
-                .setPrice(new BigDecimal("5000"))
-                .setStartDate(new SimpleDateFormat("2021-10-12 01:00"))
-                .setEndDate(new SimpleDateFormat("2021-12-24 01:00"));
+                .setPrice(new BigDecimal("5000"));
         Product product = new Product()
                 .setId(1L)
                 .setGlobalCodeItemNumber("PPPP")
@@ -34,17 +36,17 @@ class ProductByNameMapperTest {
                 .setPromotion(promotion);
 
         //when
-        ProductResponseByName result = productByNameMapper.mapToProductResponseByName(product);
+        ProductsResponseByName result = productByNameMapper.mapToProductResponseByName(Collections.singletonList(product));
         //then
-        assertEquals(1L, result.getId());
-        assertEquals("PPPP", result.getGlobalCodeItemNumber());
-        assertEquals("Daniel", result.getName());
-        assertEquals(new BigDecimal("555.55"), result.getPrice());
-        assertEquals(TypeResponseByName.FOOD, result.getType());
-        assertEquals("Promotion", result.getPromotionName());
-        assertEquals(new BigDecimal("5000"), result.getPromotionPrice());
-        assertEquals(new SimpleDateFormat("2021-10-12 01:00"), result.getStartDate());
-        assertEquals(new SimpleDateFormat("2021-12-24 01:00"), result.getEndDate());
+        assertEquals(1L, result.getByName().get(0).getId());
+        assertEquals("PPPP", result.getByName().get(0).getGlobalCodeItemNumber());
+        assertEquals("Daniel", result.getByName().get(0).getName());
+        assertEquals(new BigDecimal("555.55"), result.getByName().get(0).getPrice());
+        assertEquals(TypeResponseByName.FOOD, result.getByName().get(0).getType());
+        assertEquals("Promotion", result.getByName().get(0).getPromotionName());
+        assertEquals(new BigDecimal("5000"), result.getByName().get(0).getPromotionPrice());
+        assertEquals(new SimpleDateFormat("2021-10-12 01:00"), result.getByName().get(0).getStartDate());
+        assertEquals(new SimpleDateFormat("2021-12-24 01:00"), result.getByName().get(0).getEndDate());
     }
 
     @Test
@@ -63,17 +65,17 @@ class ProductByNameMapperTest {
                 .setType(null)
                 .setPromotion(promotion);
         //when
-        ProductResponseByName result = productByNameMapper.mapToProductResponseByName(product);
+        ProductsResponseByName result = productByNameMapper.mapToProductResponseByName(Arrays.asList(product));
         //then
-        assertEquals(1L, result.getId());
-        assertNull(result.getGlobalCodeItemNumber());
-        assertNull(result.getName());
-        assertNull(result.getPrice());
-        assertNull(result.getType());
-        assertNull(result.getPromotionName());
-        assertNull(result.getPromotionPrice());
-        assertNull(result.getStartDate());
-        assertNull(result.getEndDate());
+        assertEquals(1L, result.getByName().get(0).getId());
+        assertNull(result.getByName().get(0).getGlobalCodeItemNumber());
+        assertNull(result.getByName().get(0).getName());
+        assertNull(result.getByName().get(0).getPrice());
+        assertNull(result.getByName().get(0).getType());
+        assertNull(result.getByName().get(0).getPromotionName());
+        assertNull(result.getByName().get(0).getPromotionPrice());
+        assertNull(result.getByName().get(0).getStartDate());
+        assertNull(result.getByName().get(0).getEndDate());
     }
 
 }

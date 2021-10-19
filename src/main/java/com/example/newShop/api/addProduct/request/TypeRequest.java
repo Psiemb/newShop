@@ -1,7 +1,5 @@
 package com.example.newShop.api.addProduct.request;
 
-public enum  TypeRequest {
+public enum TypeRequest {
     FOOD, INDUSTRIAL;
-
-
 }

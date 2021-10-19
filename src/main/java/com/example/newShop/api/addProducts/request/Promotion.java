@@ -1,46 +1,47 @@
 package com.example.newShop.api.addProducts.request;
 
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
+import java.time.OffsetDateTime;
 
 public class Promotion {
-    private String Name;
-    private BigDecimal Price;
-    private SimpleDateFormat startDate;
-    private SimpleDateFormat endDate;
+
+    private String name;
+    private BigDecimal price;
+    private OffsetDateTime startDate;
+    private OffsetDateTime endDate;
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public Promotion setName(String name) {
-        Name = name;
+        this.name = name;
         return this;
     }
 
     public BigDecimal getPrice() {
-        return Price;
+        return price;
     }
 
     public Promotion setPrice(BigDecimal price) {
-        Price = price;
+        this.price = price;
         return this;
     }
 
-    public SimpleDateFormat getStartDate() {
+    public OffsetDateTime getStartDate() {
         return startDate;
     }
 
-    public Promotion setStartDate(SimpleDateFormat startDate) {
+    public Promotion setStartDate(OffsetDateTime startDate) {
         this.startDate = startDate;
         return this;
     }
 
-    public SimpleDateFormat getEndDate() {
+    public OffsetDateTime getEndDate() {
         return endDate;
     }
 
-    public Promotion setEndDate(SimpleDateFormat endDate) {
+    public Promotion setEndDate(OffsetDateTime endDate) {
         this.endDate = endDate;
         return this;
     }

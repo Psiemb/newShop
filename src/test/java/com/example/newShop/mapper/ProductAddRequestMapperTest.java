@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.time.OffsetDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -23,8 +24,8 @@ class ProductAddRequestMapperTest {
         PromotionRequest promotion = new PromotionRequest()
                 .setName("Promotion")
                 .setPrice(new BigDecimal("500"))
-                .setStartDate(new SimpleDateFormat("2021-10-12 01:00"))
-                .setStartDate(new SimpleDateFormat("2021-12-24 01:00"));
+                .setStartDate(OffsetDateTime.now())
+                .setEndDate(OffsetDateTime.now().plusDays(2));
 
         AddProductRequest addProductRequest = new AddProductRequest()
                 .setGlobalCodeItemNumber("PPPP")
@@ -47,8 +48,8 @@ class ProductAddRequestMapperTest {
         PromotionRequest promotion = new PromotionRequest()
                 .setName("Promotion")
                 .setPrice(new BigDecimal("500"))
-                .setStartDate(new SimpleDateFormat("2021-10-12 01:00"))
-                .setStartDate(new SimpleDateFormat("2021-12-24 01:00"));
+                .setStartDate(OffsetDateTime.now())
+                .setEndDate(OffsetDateTime.now().plusDays(2));
 
         AddProductRequest addProductRequest = new AddProductRequest()
                 .setGlobalCodeItemNumber(null)
